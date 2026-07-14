@@ -1,0 +1,42 @@
+stages:
+  - lint
+  - security
+  - test
+  - type_check
+  - changelog
+
+lint_job:
+  stage: lint
+  image: node:20
+  script:
+    - npm ci
+    - npx eslint .
+
+security_job:
+  stage: security
+  image: node:20
+  script:
+    - npm audit
+    # secret scanning with gitleaks
+    - echo "Running secret scanning with gitleaks"
+
+test_job:
+  stage: test
+  image: node:20
+  script:
+    - npm ci
+    - npm run test:coverage
+
+type_check_job:
+  stage: type_check
+  image: node:20
+  script:
+    - npm ci
+    - npm run typecheck
+
+changelog_job:
+  stage: changelog
+  image: node:20
+  script:
+    # git-cliff automation
+    - echo "Generating changelog using git-cliff"

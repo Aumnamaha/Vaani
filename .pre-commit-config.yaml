@@ -1,0 +1,71 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.0
+    hooks:
+      - id: gitleaks
+  - repo: local
+    hooks:
+    - id: pytest
+      name: pytest
+      entry: pytest
+      language: system
+      types: [python]
+      pass_filenames: false
+
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        args: ['--extend-ignore=E501']
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.6
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  # New Security & Type Checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.1
+    hooks:
+      - id: mypy
+
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ["-r", "-ll"]
+        additional_dependencies: ["pbr"]
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.0.0
+    hooks:
+    - id: pylint
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+    - id: pyupgrade
+      args: [--py312-plus]
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: v2.11
+    hooks:
+      - id: vulture
+        args: [app.py]
+  - repo: https://github.com/pypa/pip-audit
+    rev: v2.7.2
+    hooks:
+      - id: pip-audit
+  - repo: https://github.com/semgrep/semgrep
+    rev: v1.50.0
+    hooks:
+      - id: semgrep
