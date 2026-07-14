@@ -1,9 +1,9 @@
 stages:
   - lint
-  - security
-  - test
+  - format
   - type_check
-  - changelog
+  - test
+  - coverage
 
 lint_job:
   stage: lint
@@ -12,31 +12,35 @@ lint_job:
     - npm ci
     - npx eslint .
 
-security_job:
-  stage: security
-  image: node:20
-  script:
-    - npm audit
-    # secret scanning with gitleaks
-    - echo "Running secret scanning with gitleaks"
-
-test_job:
-  stage: test
+format_job:
+  stage: format
   image: node:20
   script:
     - npm ci
-    - npm run test:coverage
+    - npx prettier --check .
 
 type_check_job:
   stage: type_check
   image: node:20
   script:
     - npm ci
-    - npm run typecheck
+    - npx tsc --noEmit
 
-changelog_job:
-  stage: changelog
+test_job:
+  stage: test
   image: node:20
   script:
-    # git-cliff automation
+    - npm ci
+    - npx jest
+    - npm audit
+
+coverage_job:
+  stage: coverage
+  image: node:20
+  script:
+    - npm ci
+    - npx jest --coverage
+    # secret scanning with gitleaks
+    - echo "Running secret scanning with gitleaks"
+    # git-cliff changelog automation
     - echo "Generating changelog using git-cliff"
