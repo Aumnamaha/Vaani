@@ -17,7 +17,7 @@ export const MODEL_LOCAL_PATH = FileSystem.documentDirectory + '.vaani/models/qw
 export const MODEL_FILE_PATH = `${MODEL_LOCAL_PATH}${MODEL_ID}.gguf`;
 
 let llamaContext: LlamaContext | null = null;
-const AI_TIMEOUT_MS = 10000; // 10-second timeout constraint
+const AI_TIMEOUT_MS = 45000; // 45-second timeout for cold CPU inference
 
 // ============================================================================
 // Verification Checks

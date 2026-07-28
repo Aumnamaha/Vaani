@@ -54,4 +54,7 @@ tsconfig.tsbuildinfo
 # Local settings and models
 .vaani/
 .expensiu/
-expo-env.d.ts
+
+# Native folders (regenerated via expo prebuild)
+/android/
+/ios/

@@ -18,6 +18,11 @@ export function validateRecord(candidate: any): { valid: boolean; errors: string
     errors.push(`type must be one of: ${RECORD_TYPES.join(', ')}`);
   }
 
+  // Default currency to INR when the model didn't infer one for an expense
+  if (candidate.type === 'expense' && !candidate.currency) {
+    candidate.currency = 'INR';
+  }
+
   // 2. Validate Title
   if (!candidate.title || typeof candidate.title !== 'string' || !candidate.title.trim()) {
     errors.push('title is a required non-empty string');
@@ -91,6 +96,9 @@ export async function retryWithCorrection(
   if (attempt > 2) {
     return null;
   }
+
+  // Give the native context breathing room to fully release before retrying
+  await new Promise(resolve => setTimeout(resolve, 3000));
 
   // Log retry usage to benchmarks
   await benchmarkLogger.logStage(

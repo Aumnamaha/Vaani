@@ -23,7 +23,7 @@ export async function isModelDownloaded(): Promise<boolean> {
   try {
     const fileInfo = await FileSystem.getInfoAsync(MODEL_FILE_PATH);
     // Whisper tiny.en is ~75MB (77,712,416 bytes)
-    return fileInfo.exists && (fileInfo as any).size > 70000000;
+    return fileInfo.exists && (fileInfo as any).size > 77000000;
   } catch {
     return false;
   }
@@ -41,7 +41,7 @@ async function verifySHA256Checksum(filePath: string): Promise<boolean> {
     
     const size = (fileInfo as any).size;
     // Standard verification checks file existence and that size is in the range of ~70MB to ~85MB
-    if (size < 70000000 || size > 85000000) {
+    if (size < 77000000) {
       console.warn(`File size check failed. Expected between 70MB and 85MB, got ${size} bytes`);
       return false;
     }
@@ -120,7 +120,7 @@ export async function initWhisperEngine(): Promise<void> {
   try {
     // Initialise on-device whisper context
     whisperContext = await initWhisper({
-      filePath: MODEL_FILE_PATH,
+      filePath: MODEL_FILE_PATH.replace('file://', ''),
     });
   } catch (error) {
     console.error('Failed to load Whisper model into memory:', error);

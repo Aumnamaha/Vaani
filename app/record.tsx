@@ -137,7 +137,8 @@ export default function RecordScreen() {
       }
 
       await recording.stopAndUnloadAsync();
-      const uri = recording.getURI();
+      const rawUri = recording.getURI();
+      const uri = rawUri ? rawUri.replace(/^file:\/+/, '') : rawUri;
       setRecording(null);
 
       if (!uri) {
