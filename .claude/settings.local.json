@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//opt/**)",
+      "Read(//usr/lib/jvm/**)",
+      "Read(//home/**)",
+      "Bash(rpm -qa)",
+      "Bash(dpkg -l)",
+      "Bash(xargs -I {} sh -c 'cat {} | grep -q android && echo \"{}\"')",
+      "Bash(sudo rm -rf /opt/android-studio)",
+      "Bash(rm -rf \"/home/aumnamaha/.gradle/wrapper/dists/gradle-8.10.2-all/*\")",
+      "Bash(rm -rf \"/home/aumnamaha/.gradle/wrapper/dists/gradle-7.5.1-all/*\")",
+      "Bash(npx expo *)",
+      "Bash(npm list *)",
+      "Bash(npm install *)",
+      "Bash(adb devices *)",
+      "Bash(apt-get install *)",
+      "Bash(chmod +x gradlew)",
+      "Bash(./gradlew clean *)",
+      "Bash(./gradlew --version)",
+      "Bash(export ANDROID_HOME=/home/aumnamaha/.android)"
+    ]
+  }
+}
