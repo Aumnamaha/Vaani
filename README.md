@@ -1,4 +1,14 @@
-# Vaani 🎙️
+# 🎙️ Vaani — Offline Voice-to-Structured-Data App
+
+> **Privacy-first, fully offline mobile app that transcribes voice notes and extracts structured data using on-device Whisper + Qwen models — zero cloud dependency.**
+
+[![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactnative.dev/)
+[![Expo SDK 51](https://img.shields.io/badge/Expo-SDK%2051-000020?style=for-the-badge&logo=expo&logoColor=white)](https://expo.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
+---
+
+## 📋 Executive Summary
 
 **Vaani** (meaning *voice* or *speech* in Sanskrit) is a privacy-first, fully offline, CPU-only mobile application for voice-to-structured-data extraction. Built for hackathons, it allows users to speak or type unstructured notes (expenses, tasks, reminders) and uses on-device Whisper and Llama/Qwen models to automatically parse them into structured SQLite databases with zero cloud dependencies.
 
